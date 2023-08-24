@@ -1,0 +1,10 @@
+{
+  "name": "helpers",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^1.14.0",
+    "typescript": "latest"
+  }
+}

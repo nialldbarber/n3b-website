@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.4.0",
+    "helpers": "*",
+    "negotiator": "^0.6.3",
     "next": "^13.4.19",
+    "next-intl": "^3.0.0-beta.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ui": "*"
