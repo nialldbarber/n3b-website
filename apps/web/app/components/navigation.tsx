@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DebugLayout } from "ui";
+import { useTranslations } from "next-intl";
 import { Logo } from "./logo";
 
 interface NavLinkProps {
@@ -16,6 +17,8 @@ function NavLink({ href, children }: NavLinkProps): JSX.Element {
 }
 
 export function Navigation(): JSX.Element {
+  const t = useTranslations();
+
   return (
     <DebugLayout>
       <header className="bg-slate-900">
@@ -29,10 +32,12 @@ export function Navigation(): JSX.Element {
             <DebugLayout>
               <ul className="flex">
                 <li className="mr-5">
-                  <NavLink href="/posts">Posts</NavLink>
+                  <NavLink href="/posts">{t("components.nav.posts")}</NavLink>
                 </li>
                 <li>
-                  <NavLink href="/snippets">Snippets</NavLink>
+                  <NavLink href="/snippets">
+                    {t("components.nav.snippets")}
+                  </NavLink>
                 </li>
               </ul>
             </DebugLayout>

@@ -35,5 +35,6 @@ module.exports = {
   rules: {
     "import/no-default-export": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
+    "react/no-unstable-nested-components": 0,
   },
 };

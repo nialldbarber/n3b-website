@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { createTranslator, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { Navigation } from "../components/navigation";
@@ -17,20 +16,15 @@ async function getMessages(locale: string): Promise<any> {
 //   return ["en", "lv"].map((locale) => ({ locale }));
 // }
 
-// export async function generateMetadata({ params: { locale } }: Props) {
-//   const messages = await getMessages(locale);
-//   const t = createTranslator({ locale, messages });
+export async function generateMetadata({ params: { locale } }: Props) {
+  const messages = await getMessages(locale);
+  const t = createTranslator({ locale, messages });
 
-//   return {
-//     title: t("LocaleLayout.title"),
-//   };
-// }
-
-export const metadata: Metadata = {
-  title: "Niall Barber | Frontend Engineer",
-  description:
-    "Hey! I'm a Frontend Engineer based in the U.K. specialising in React Native",
-};
+  return {
+    title: t("meta.pages.home.title"),
+    description: t("meta.pages.home.description"),
+  };
+}
 
 export default async function RootLayout({
   children,
