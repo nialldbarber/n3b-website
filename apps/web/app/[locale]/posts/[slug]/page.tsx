@@ -9,7 +9,6 @@ import rehypePrism from "rehype-prism-plus";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import rehypeHighlight from "rehype-highlight";
-import { headers } from "next/headers";
 import { useLocale } from "next-intl";
 
 export const options = {
@@ -30,32 +29,19 @@ export const options = {
 //   const posts = fs.readdirSync(path.join("posts"));
 //   const paths = posts.map((filename) => ({
 //     slug: filename.replace(".mdx", ""),
+
 //   }));
 //   return paths;
 // }
 
-function getPost({
-  locale = "en",
-  slug,
-}: {
-  locale: "en" | "lv";
-  slug: string;
-}): {
-  frontMatter: Record<string, any>;
+type Locales = "en" | "lv";
+
+function getPost({ locale = "en", slug }: { locale: Locales; slug: string }): {
+  frontMatter: Record<string, string>;
   slug: string;
   content: string;
 } {
   const irLatvijaa = locale === "lv";
-
-  // console.log("slug is: ", slug);
-  console.log("locale is:", locale);
-  console.log("irLatvijaa is:", irLatvijaa);
-
-  const postDir = "posts";
-  const postDirs = fs.readdirSync(path.join(postDir));
-
-  console.log("dskjgnsdkfj;gksjdgksjdpg", slug);
-
   const markdownFile = fs.readFileSync(
     path.join("posts", slug, `index${irLatvijaa ? ".lv" : ""}.md`),
     "utf-8"
@@ -70,21 +56,25 @@ function getPost({
   };
 }
 
-export function generateMetadata({ params }: any): {
-  title: any;
-  description: any;
+export function generateMetadata({ params }): {
+  title: string;
+  description: string;
 } {
-  const post = getPost(params);
-
+  const post = getPost({ locale: params.locale, slug: params.slug });
   return {
     title: post.frontMatter.title,
     description: post.frontMatter.description,
   };
 }
 
-export default function Post({ params }: any): JSX.Element {
+export default function Post({
+  params: { slug },
+}: {
+  params: { slug: string };
+}): JSX.Element {
   const locale = useLocale();
-  const props = getPost(locale, params);
+  // @ts-expect-error
+  const props = getPost({ locale, slug });
 
   return (
     <article className="prose prose-sm md:prose-base lg:prose-lg prose-slate !prose-invert mx-auto capsize">
