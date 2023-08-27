@@ -16,7 +16,10 @@ async function getMessages(locale: string): Promise<any> {
 //   return ["en", "lv"].map((locale) => ({ locale }));
 // }
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata({ params: { locale } }): Promise<{
+  title: string;
+  description: string;
+}> {
   const messages = await getMessages(locale);
   const t = createTranslator({ locale, messages });
 
@@ -34,8 +37,6 @@ export default async function RootLayout({
   params: { locale: string };
 }): Promise<JSX.Element> {
   const messages = await getMessages(locale);
-
-  console.log(messages);
 
   return (
     <html className="bg-zinc-900" lang={locale}>
