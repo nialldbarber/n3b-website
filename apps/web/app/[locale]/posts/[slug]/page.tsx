@@ -10,6 +10,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import rehypeHighlight from "rehype-highlight";
 import { useLocale } from "next-intl";
+import { MainLayout } from "../../../components/layout/main";
 
 export const options = {
   mdxOptions: {
@@ -24,17 +25,7 @@ export const options = {
   },
 };
 
-// export function generateStaticParams({ params }): { slug: string }[] {
-//   console.log(params);
-//   const posts = fs.readdirSync(path.join("posts"));
-//   const paths = posts.map((filename) => ({
-//     slug: filename.replace(".mdx", ""),
-
-//   }));
-//   return paths;
-// }
-
-type Locales = "en" | "lv";
+export type Locales = "en" | "lv";
 
 function getPost({ locale = "en", slug }: { locale: Locales; slug: string }): {
   frontMatter: Record<string, string>;
@@ -77,9 +68,11 @@ export default function Post({
   const props = getPost({ locale, slug });
 
   return (
-    <article className="prose prose-sm md:prose-base lg:prose-lg prose-slate !prose-invert mx-auto capsize">
-      <h1>{props.frontMatter.title}</h1>
-      <MDXRemote options={options} source={props.content} />
-    </article>
+    <MainLayout>
+      <article className="prose prose-sm md:prose-base lg:prose-lg prose-slate !prose-invert mx-auto max-w-full">
+        <h1 className="capsize">{props.frontMatter.title}</h1>
+        <MDXRemote options={options} source={props.content} />
+      </article>
+    </MainLayout>
   );
 }

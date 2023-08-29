@@ -3,7 +3,8 @@ import path from "node:path";
 import matter from "gray-matter";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { Text, DebugLayout } from "ui";
+import { Card, Text, DebugLayout } from "ui";
+import { MainLayout } from "../components/layout/main";
 
 export default function Home(): JSX.Element {
   const t = useTranslations();
@@ -26,15 +27,9 @@ export default function Home(): JSX.Element {
   });
 
   return (
-    <div className="p-5">
+    <MainLayout full>
       <div className="flex flex-col gap-3">
-        <Text level="1">Header 1</Text>
-        <Text level="2">Header 2</Text>
-        <Text level="3">Header 3</Text>
-        <Text level="4">Header 4</Text>
-        <Text level="5">Header 5</Text>
-        <Text level="6">Header 6</Text>
-        <Text>{t("pages.home.intro")}</Text>
+        <Text level="2">{t("pages.home.intro")}</Text>
         <Text>{t("pages.home.para-one")}</Text>
         <Text>
           {t.rich("pages.home.working", {
@@ -46,17 +41,14 @@ export default function Home(): JSX.Element {
           })}
         </Text>
         <div>
-          {posts.map((post) => (
-            <div key={post.slug}>
-              <Link href={`/posts/${post.slug}`} key={post.slug} passHref>
-                <Text>{post.meta.title}</Text>
-                <Text>{post.meta.description}</Text>
-                <Text>{post.meta.date}</Text>
-              </Link>
-            </div>
+          <Text level="1">Latest posts</Text>
+          {posts.map(({ slug, meta }) => (
+            <Link href={`/posts/${slug}`} key={slug}>
+              <Card cta={meta.description} title={meta.title} />
+            </Link>
           ))}
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }

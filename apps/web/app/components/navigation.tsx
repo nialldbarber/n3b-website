@@ -5,7 +5,7 @@ import { Logo } from "./logo";
 
 interface NavLinkProps {
   href: string;
-  children: string | JSX.Element;
+  children: string | React.ReactNode;
 }
 
 function NavLink({ href, children }: NavLinkProps): JSX.Element {

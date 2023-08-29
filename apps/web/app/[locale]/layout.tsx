@@ -1,6 +1,7 @@
 import { createTranslator, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { Navigation } from "../components/navigation";
+import { Footer } from "../components/footer";
 import "../styles/globals.css";
 import "ui/styles.css";
 
@@ -46,6 +47,7 @@ export default async function RootLayout({
           <main>
             <div className="max-w-5xl mx-auto">{children}</div>
           </main>
+          <Footer />
         </body>
       </NextIntlClientProvider>
     </html>

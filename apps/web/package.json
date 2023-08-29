@@ -28,6 +28,7 @@
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
     "remark-mdx-frontmatter": "^3.0.0",
+    "tailwind-merge": "^1.14.0",
     "ui": "*"
   },
   "devDependencies": {

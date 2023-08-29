@@ -1,5 +1,5 @@
 type DebugLayoutProps = {
-  children: JSX.Element | string;
+  children: React.ReactNode | string;
 };
 
 export function DebugLayout({ children }: DebugLayoutProps): JSX.Element {
