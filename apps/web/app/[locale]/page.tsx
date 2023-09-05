@@ -16,7 +16,7 @@ export default function Home(): JSX.Element {
 
   const posts = postDirs.map((dirName) => {
     const postContent = fs.readFileSync(
-      path.join(postDir, dirName, `index${irLatvijaa ? ".lv" : ""}.md`),
+      path.join(postDir, dirName, `index${irLatvijaa ? ".lv" : ""}.mdx`),
       "utf-8"
     );
     const { data: frontmatter } = matter(postContent);

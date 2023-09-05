@@ -12,7 +12,7 @@ export function MainLayout({
   full = false,
 }: MainLayoutProps): JSX.Element {
   const c = cn(
-    "max-w-5xl mx-auto p-5",
+    "max-w-5xl mx-auto p-5 mt-5",
     className,
     // TODO: should this be a css variable?
     full && "h-[calc(100vh-96px-64px)]"

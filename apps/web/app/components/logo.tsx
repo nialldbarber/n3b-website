@@ -14,7 +14,7 @@ export function Logo(): JSX.Element {
   };
 
   return (
-    <div onMouseEnter={handleMouseEnter}>
+    <div aria-label="Logo" onMouseEnter={handleMouseEnter} role="navigation">
       <p className={`${color} text-5xl`}>{`{ ... }`}</p>
     </div>
   );

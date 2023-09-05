@@ -17,7 +17,7 @@ function SocialLink({
 
 export function Footer(): JSX.Element {
   return (
-    <footer className="text-white pb-4">
+    <footer className="text-white pb-4" role="contentinfo">
       <MainLayout className="items-center justify-around text-center">
         <SocialLink href="https://github.com/nialldbarber">Github</SocialLink>
         <SocialLink href="https://www.instagram.com/nialldbarber/">

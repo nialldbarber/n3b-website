@@ -34,7 +34,7 @@ function getPost({ locale = "en", slug }: { locale: Locales; slug: string }): {
 } {
   const irLatvijaa = locale === "lv";
   const markdownFile = fs.readFileSync(
-    path.join("posts", slug, `index${irLatvijaa ? ".lv" : ""}.md`),
+    path.join("posts", slug, `index${irLatvijaa ? ".lv" : ""}.mdx`),
     "utf-8"
   );
 
@@ -73,6 +73,11 @@ export default function Post({
         <h1 className="capsize">{props.frontMatter.title}</h1>
         <MDXRemote options={options} source={props.content} />
       </article>
+      <aside>
+        <nav>
+          <h2>Table of Contents</h2>
+        </nav>
+      </aside>
     </MainLayout>
   );
 }

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { DebugLayout } from "ui";
 import { useTranslations } from "next-intl";
 import { Logo } from "./logo";
 
@@ -10,7 +9,10 @@ interface NavLinkProps {
 
 function NavLink({ href, children }: NavLinkProps): JSX.Element {
   return (
-    <Link className="p-3 capsize" href={href}>
+    <Link
+      className="flex p-3 border border-slate-900 capsize focus:border focus:border-white"
+      href={href}
+    >
       {children}
     </Link>
   );
@@ -22,12 +24,10 @@ export function Navigation(): JSX.Element {
   return (
     <header className="bg-slate-900">
       <div className="flex justify-between px-5 items-center sticky py-3 text-slate-50 top-[-1px] max-w-5xl mx-auto">
-        <div>
-          <Link href="/">
-            <Logo />
-          </Link>
-        </div>
-        <nav>
+        <Link href="/">
+          <Logo />
+        </Link>
+        <nav aria-label="Primary">
           <ul className="flex">
             <li className="mr-5">
               <NavLink href="/posts">{t("components.nav.posts")}</NavLink>

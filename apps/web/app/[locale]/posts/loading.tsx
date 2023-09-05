@@ -1,3 +1,10 @@
+import { Text } from "ui";
+import { MainLayout } from "../../components/layout/main";
+
 export default function Loading(): JSX.Element {
-  return <p className="text-5xl text-white">Loading...</p>;
+  return (
+    <MainLayout full>
+      <Text level="2">Loading...</Text>
+    </MainLayout>
+  )
 }
